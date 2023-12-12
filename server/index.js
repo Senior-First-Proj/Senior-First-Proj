@@ -18,7 +18,7 @@ app.use(express.static(__dirname + "/../client/dist"));
 // app.use("/api/users",userRoute)
 // app.use("/api/categories",catRoute)
 // app.use("/api/posts",postRoute)
-
+app.get('/api/getAll')
 
 
 
