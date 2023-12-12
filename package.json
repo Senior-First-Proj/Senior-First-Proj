@@ -1,0 +1,26 @@
+{"name":"Senior-First-Proj","version":"1.0.0","description":"First Project in Senior Phase","main":"index.js",
+"scripts":{
+    "server-dev":"nodemon server/index.js",
+    "react-dev":"webpack --mode development --watch"
+},
+"author":"Team : Aziz Chanoufi,Louay Sakli,Farah Kharbech,Malek Aloui,Hamza Ben Jemaa",
+"dependencies":{
+    "axios":"^1.6.2",
+    "cors":"^2.8.5",
+    "express":"^4.15.0",
+    "jquery":"^3.1.1",
+    "mysql2":"^3.6.5",
+    "nodejs":"^0.0.0",
+    "react":"17.0.2",
+    "react-dom":"17.0.2"
+    },
+    "devDependencies":{
+        "@babel/core":"^7.19.6",
+        "@babel/preset-env":"^7.19.4",
+        "@babel/preset-react":"^7.23.3",
+        "babel-loader":"^9.0.1",
+        "nodemon":"^3.0.2",
+        "webpack":"^5.74.0",
+        "webpack-cli":"^4.10.0"
+        }
+    }
