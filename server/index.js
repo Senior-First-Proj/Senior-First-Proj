@@ -3,7 +3,8 @@ const db = require('./database/index.js')
 const cors = require('cors');
 const userRoute = require('./routes/users.js')
 const catRoute = require('./routes/categories.js')
-const postRoute = require('./routes/posts.js')
+const postRoute = require('./routes/posts.js');
+const commRoute = require('./routes/comments.js');
 
 const port = process.env.port || 3000
 const app = express();
@@ -18,7 +19,7 @@ app.use(express.static(__dirname + "/../client/dist"));
 app.use("/api/users",userRoute)
 app.use("/api/categories",catRoute)
 app.use("/api/posts",postRoute)
-
+app.use('/api/comments',commRoute)
 
 
 
