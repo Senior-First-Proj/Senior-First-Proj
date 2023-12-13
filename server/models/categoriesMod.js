@@ -8,7 +8,7 @@ const createCat = (newCat,callback) => {
 
 
 const removeCat = (catName,callback) => {
-    const sql = `delete from categories where categoryName = ${catName}`
+    const sql = `delete from categories where categoryName = "${catName}"`
     conn.query(sql,(err,res)=>{callback(err,res)})
 }
 

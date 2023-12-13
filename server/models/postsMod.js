@@ -7,13 +7,13 @@ const readUsersPosts = (idUser,callback) => {
 }
 
 const readPostsByCat = (catName,callback) =>{
-    const sql = `select * from posts where categories_idtable2=${catName}`
+    const sql = `select * from posts where categories_categoryName="${catName}"`
     conn.query(sql,(err,res)=>{callback(err,res)})
 }
 
 const createPost = (newPost,callback) => {
     const sql = `insert into posts set ? `
-    conn.query(sql,(err,res)=>{callback(err,res)})
+    conn.query(sql,newPost,(err,res)=>{callback(err,res)})
 }
 
 const upPost = (idpost,newPost,callback) => {
