@@ -1,13 +1,13 @@
 const conn = require('../database/index.js')
 
 
-const readUsersPosts = (idUser,callback) => {
-    const sql = `select * from posts where users_idusers= ${idUser}`
+const readUsersPosts = (userName,callback) => {
+    const sql = `select * from posts where users_idusers= "${userName}"`
     conn.query(sql,(err,res)=>{callback(err,res)})
 }
 
 const readPostsByCat = (catName,callback) =>{
-    const sql = `select * from posts where categories_idtable2=${catName}`
+    const sql = `select * from posts where categories_idtable2="${catName}"`
     conn.query(sql,(err,res)=>{callback(err,res)})
 }
 
