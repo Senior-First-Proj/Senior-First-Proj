@@ -1,5 +1,5 @@
 
-const {readComByPost,createCom,upCom,removeCom} = require('../models/comments.js')
+const {readComByPost,createCom,upCom,removeCom} = require('../models/commentsMod.js')
 
 
 //getCom by post id
