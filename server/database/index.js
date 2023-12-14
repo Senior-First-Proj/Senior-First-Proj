@@ -5,7 +5,7 @@ const connection = mysql.createConnection({
     host     : 'localhost',
     user     : 'root',
     password : 'farahkh',
-    database : ''     // please add the database name 
+    database : ''     
   });
 
 connection.connect((err)=>{err ? console.log(err) : console.log("Team2 connected")})
