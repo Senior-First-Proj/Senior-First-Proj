@@ -7,6 +7,7 @@ const addUser = function (req, res) {
     err?console.error("add error:",err):res.json(result),console.log(result);
  })
 };
+
 const getUser = function (req, res) {
     let sql = "SELECT * FROM verif"
     db.query(sql, function (err, result) {
