@@ -1,9 +1,14 @@
 
 const conn = require('../database/index.js');
 
-const createCat = (newCat,callback) => {
+
+const getCats = (callback) => {
+    const sql = `select * from categories`
+    conn.query(sql,(err,result)=>{callback(err,result)})
+}
+const createCat = (val,callback) => {
     const sql = `insert into categories set ?`
-    conn.query(sql,newCat,(err,res)=>{callback(err,res)})
+    conn.query(sql,[val],(err,result)=>{callback(err,result)})
 }
 
 
@@ -12,4 +17,4 @@ const removeCat = (catName,callback) => {
     conn.query(sql,(err,res)=>{callback(err,res)})
 }
 
-module.exports = {createCat,removeCat}
+module.exports = {createCat,removeCat,getCats}
