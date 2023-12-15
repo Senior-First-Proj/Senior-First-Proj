@@ -11,6 +11,11 @@ const readOne = (userName,callback) =>{
     conn.query(sql,(err,res)=>{callback(err,res)})
 }
 
+const addUser = (newUser,callback) => {
+    const sql = `insert into users (name,lastname,email,motdepasse,picture) values (?,?,?,?,?)`
+    conn.query(sql,[newUser],(err,result)=>{callback(err,result)})
+}
+
 const upUser = (userName,newUser,callback) => {
     const sql = `update users set ? where name= "${userName}"`
     conn.query(sql,newUser,(err,res)=>{callback(err,res)})
@@ -21,4 +26,4 @@ const removeUser = (userName,callback) => {
     conn.query(sql,(err,res)=>{callback(err,res)})
 }
 
-module.exports = {readUsers,readOne,upUser,removeUser}
+module.exports = {readUsers,readOne,upUser,removeUser,addUser}
