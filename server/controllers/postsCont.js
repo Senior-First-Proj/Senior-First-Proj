@@ -1,15 +1,18 @@
-const {readUsersPosts, readPostsByCat,createPost,upPost,removePost} = require('../models/postsMod.js')
+const {readUsersPosts, readPostsByCat,createPost,upPost,removePost,readPosts} = require('../models/postsMod.js')
 
-
+//getPosts
+const getPosts=(req,res)=>{
+    readPosts((err,result)=>{result?res.json(result):console.log(err)})
+ }
 
 //getPostsByUser
 const getPostsByUser=(req,res)=>{
-   readUsersPosts(req.params.userName,(err,result)=>{result?res.json(result):console.log(err)})
+   readUsersPosts(req.params.idusers,(err,result)=>{result?res.json(result):console.log(err)})
 }
 
 //getPostsByCat
 const getPostsByCat=(req,res)=>{
-    readPostsByCat(req.params.catName,(err,result)=>{result?res.json(result):console.log(err)})
+    readPostsByCat(req.params.idtable2,(err,result)=>{result?res.json(result):console.log(err)})
 }
 
 //addPost
@@ -28,4 +31,4 @@ const deletePost=(req,res)=>{
 }
 
 //Don't forget to export
-module.exports={getPostsByUser,getPostsByCat,addPost,updatePost,deletePost}
+module.exports={getPostsByUser,getPostsByCat,addPost,updatePost,deletePost,getPosts}
