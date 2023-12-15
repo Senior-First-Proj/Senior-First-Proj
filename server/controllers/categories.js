@@ -14,7 +14,7 @@ const addCat=(req,res)=>{
 
 //deleteCat
 const deleteCat=(req,res)=>{
-    removeCat((err,result)=>{result?res.json(result):console.log(err)})
+    removeCat(req.params.categoryName,(err,result)=>{result?res.json(result):console.log(err)})
 }
 
 
