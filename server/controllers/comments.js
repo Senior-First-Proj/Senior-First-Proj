@@ -9,13 +9,13 @@ const getCom=(req,res)=>{
 
 //addCom
 const addCom=(req,res)=>{
-    createCom(req.body.comment,(err,result)=>{result?res.json(result):console.log(err)})
+    createCom(req.body,(err,result)=>{result?res.json(result):console.log(err)})
   }
   
 
 //updateCom
 const updateCom=(req,res)=>{
-    upCom(req.parmas.id,req.body.comment,(err,result)=>{result?res.json(result):console.log(err)})
+    upCom(req.parmas.id,req.body,(err,result)=>{result?res.json(result):console.log(err)})
 }
 
 //deleteCom

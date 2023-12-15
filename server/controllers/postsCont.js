@@ -14,12 +14,12 @@ const getPostsByCat=(req,res)=>{
 
 //addPost
 const addPost=(req,res)=>{
-    createPost(req.body,req.body.image,req.body.description,(err,result)=>{result?res.json(result):console.log(err)})
+    createPost(req.body,(err,result)=>{result?res.json(result):console.log(err)})
   }
 
 //updatePost
 const updatePost=(req,res)=>{
-    upPost(req.params.id,req.body.image,req.body.description,(err,result)=>{result?res.json(result):console.log(err)})
+    upPost(req.params.id,req.body,(err,result)=>{result?res.json(result):console.log(err)})
 }
 
 //deletePost 

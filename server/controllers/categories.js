@@ -1,9 +1,14 @@
-const {createCat,removeCat} = require('../models/categoriesMod.js')
+const {createCat,removeCat,getCats} = require('../models/categoriesMod.js')
 
+
+// getCat
+const getCat=(req,res)=>{
+  getCats((err,result)=>{result?res.json(result):console.log(err)})
+}
 
 //addCat
 const addCat=(req,res)=>{
-  createCat(req.body.categoryName,(err,result)=>{result?res.json(result):console.log(err)})
+  createCat(req.body,(err,result)=>{result?res.json(result):console.log(err)})
 }
 
 
@@ -14,4 +19,4 @@ const deleteCat=(req,res)=>{
 
 
 //don't forget to export
-module.exports={addCat,deleteCat}
+module.exports={addCat,deleteCat,getCat}
