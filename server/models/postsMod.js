@@ -14,7 +14,7 @@ const readPostsByCat = (catName,callback) =>{
 
 const createPost = (newPost,callback) => {
     const sql = `insert into posts set ? `
-    conn.query(sql,newPost,(err,res)=>{callback(err,res)})
+    conn.query(sql,[newPost],(err,res)=>{callback(err,res)})
 }
 
 const upPost = (idpost,newPost,callback) => {
