@@ -4,10 +4,10 @@ const commCont = require('../controllers/comments.js');
 
 
 
-commRoute.get('/allcomments',commCont.getCom)
+commRoute.get('/allcomments/:idposts',commCont.getCom)
 commRoute.post('/addComment', commCont.addCom)
-commRoute.put('/updateComm/:id',commCont.updateCom)
-commRoute.delete('/deleteComm/:id', commCont.deleteCom)
+commRoute.put('/updateCom/:idcomments',commCont.updateCom)
+commRoute.delete('/deleteCom/:idcomments', commCont.deleteCom)
 
 
 module.exports = commRoute;
