@@ -7,14 +7,32 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Alert from '@mui/material/Alert';
 
-function Login({change}) {
+function Login({change,verif}) {
 const [email,setEmail]=useState("")
 const [password,setPassword]=useState("")
-const [showsucc,setShowucc]=useState(false)
+const [showsucc,setShowsucc]=useState(false)
 const [showerror,setShowerror]=useState(false)
 // function
 const hundle=(x,e)=>{
     x(e.target.value)
+  }
+
+  const show_error=()=>{
+    return(<Stack sx={{ width: '100%' }} spacing={2}>
+    <Alert variant="filled" severity="error">
+      incorrect information ! sign in if you dont have an account
+      </Alert>
+      </Stack>)
+  }
+
+  const show_succes=()=>{
+    return(
+    <Stack sx={{ width: '100%' }} spacing={2}>
+        <Alert variant="filled" severity="success">
+        you have acces to your acount!
+      </Alert>
+      </Stack>
+      )
   }
 
 
@@ -93,11 +111,28 @@ const hundle=(x,e)=>{
             ),
           }}  id="outlined-basic" label="Password" variant="outlined" />
     </Box>
+    <div className='alert_login'>
+    {showerror&&show_error()}
+    {showsucc&&show_succes()}
+    </div>
+    <div className='btn'>
     <Stack spacing={2} direction="row">
-      <Button style={btnstyle} variant="Contained">Login</Button>
+      <Button style={btnstyle} variant="Contained"
+      onClick={()=>{
+        if(verif(email,password)==true){
+          setShowsucc(true);
+          setShowerror(false)
+        }
+        else{
+          setShowerror(true);
+          setShowsucc(false)
+        }
+      }}
+      >Login</Button>
     </Stack>
-        </div>
         <label className='label1' htmlFor="">Don't have an account?</label><a   onClick={()=>{change("signup")}}>sign up</a>
+    </div>
+        </div>
     </div>
   )
 }
