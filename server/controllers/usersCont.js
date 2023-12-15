@@ -1,5 +1,11 @@
-const {readUsers,readOne,upUser,removeUser} = require('../models/usersMod.js')
+const {readUsers,readOne,upUser,removeUser,addUser} = require('../models/usersMod.js')
 
+
+// addUser
+
+const addOneUser=(req,res)=>{
+     addUser(req.body,(err,result)=>{result?res.json(result):console.log(err)})
+}
 //  getUsers
 const getUsers=(req,res)=>{
     readUsers((err,result)=>{result?res.json(result):console.log(err)})
@@ -21,4 +27,4 @@ const deleteUser=(req,res)=>{
 }
 
 //Don't forget to export
-module.exports={getUsers,getOne,updateUser,deleteUser}
+module.exports={getUsers,getOne,updateUser,deleteUser,addOneUser}
