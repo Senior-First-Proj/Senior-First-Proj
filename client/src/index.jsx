@@ -15,7 +15,7 @@ const App = () => {
 //back:
  
 const adduser=(user)=>{
-  axios.post("http://localhost:3001/api/users/adduser",user)
+  axios.post("http://localhost:3000/api/users/addUser",user)
   .then(()=>{
     console.log("user added");
     setshow(false)
@@ -26,7 +26,7 @@ const adduser=(user)=>{
 }
 
 useEffect(()=>{
-  axios.get("http://localhost:3001/api/users/getAll")
+  axios.get("http://localhost:3000/api/users/allUsers")
   .then((res)=>{
     setUsers(res.data)
     console.log("user geted");
