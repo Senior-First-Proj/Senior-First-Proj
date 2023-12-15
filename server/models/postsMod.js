@@ -1,14 +1,18 @@
 const conn = require('../database/index.js')
 
-
-const readUsersPosts = (userName,callback) => {
-    const sql = `select * from posts where users_idusers= "${userName}"`
+const readPosts = (callback)=> {
+    const sql = `select * from posts`
+    conn.query(sql,(err,res)=>{callback(err,res)})
+}
+ 
+const readUsersPosts = (iduser,callback) => {
+    const sql = `select * from posts where users_idusers= "${iduser}"`
     conn.query(sql,(err,res)=>{callback(err,res)})
 }
 
-const readPostsByCat = (catName,callback) =>{
+const readPostsByCat = (catId,callback) =>{
 
-    const sql = `select * from posts where categories_categoryName="${catName}"`
+    const sql = `select * from posts where categories_idtable2="${catId}"`
     conn.query(sql,(err,res)=>{callback(err,res)})
 }
 
@@ -27,4 +31,4 @@ const removePost = (idpost,callback) => {
     conn.query(sql,(err,res)=>{callback(err,res)})
 }
 
-module.exports = {readUsersPosts, readPostsByCat,createPost,upPost,removePost}
+module.exports = {readUsersPosts, readPostsByCat,createPost,upPost,removePost,readPosts}
