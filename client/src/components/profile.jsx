@@ -31,6 +31,7 @@ function profile({user,posts}) {
       }
   return (
     <div>
+      <div> test </div>
         <div>
          {user.map(el=>(
             <>
