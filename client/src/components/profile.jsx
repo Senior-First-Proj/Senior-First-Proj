@@ -5,6 +5,13 @@ import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import Button from '@mui/material/Button';
 import AddToPhotosIcon from '@mui/icons-material/AddToPhotos';
 import { styled } from '@mui/material/styles';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import Checkbox from '@mui/material/Checkbox';
+import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
+import Favorite from '@mui/icons-material/Favorite';
+import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
+import BookmarkIcon from '@mui/icons-material/Bookmark';
+import AddCommentIcon from '@mui/icons-material/AddComment';
 
 
 const VisuallyHiddenInput = styled('input')({
@@ -18,7 +25,8 @@ const VisuallyHiddenInput = styled('input')({
     whiteSpace: 'nowrap',
     width: 1,
   });
-function profile({user,posts}) {
+  const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+function profile({oneuser,post}) {
     const [image,setImage]=useState("")
     const [file,setFile]=useState(null)
 
@@ -35,7 +43,7 @@ function profile({user,posts}) {
     <div>
       <div> test </div>
         <div>
-         {user.map(el=>(
+         {oneuser.map(el=>(
             <>
             <div>
             <Stack direction="row" spacing={2}>
@@ -55,7 +63,7 @@ function profile({user,posts}) {
             <label htmlFor="">Add New Post</label>
             <div className='upimg'>
       <label htmlFor="">Add picture :</label> <br />
-    <Button component="label" variant="contained" startIcon={<CloudUploadIcon />}>
+    <Button component="label" variant="contained" >
       Upload Image
       <VisuallyHiddenInput type="file"
       onChange={(e) => setFile(e.target.files[0])
@@ -69,7 +77,27 @@ function profile({user,posts}) {
             <button>Post <AddToPhotosIcon/></button>
          </div>
         <div>
-        {posts.map(el)}
+        {
+            oneuser.map((el,i)=>{
+              return(
+                <div className='card'>
+                    <div className='headcard'>
+                      <Stack direction="row" spacing={2}>
+                        <Avatar alt="Cindy Baker" src={el.picture} />
+                      </Stack>
+                      <h3>{el.name} {el.lastname}</h3>
+                      </div>
+                      <div>
+                        {post.map(el=>(
+                          <>
+                          <img src={el.imagePost} className='postimg' alt="" />
+                        <p>{el.descriptionPost}</p>
+                        </>
+                        ))}
+                        
+                      </div>
+                </div>
+            )})}
         </div>
         </div>
 

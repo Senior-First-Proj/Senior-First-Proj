@@ -1,7 +1,7 @@
 import React from 'react'
 import Card from './card.jsx'
 import Toposts from './toposts.jsx'
-function page({user}) {
+function page({user,posts,categ}) {
   return (
     <div className='pagediv'>
         <div className='category'>
@@ -9,14 +9,14 @@ function page({user}) {
             <h2>trends</h2> <a className='a1' href="">All</a>
             </div>
             <div>
-                {user.map(el=>{
+                {categ.map(el=>{
                     return(
                         <div className='categ'>
                             <div className='det'>
-                            <h2>{el.name_user}</h2>
-                            <p>{el.lastname_user}</p>
+                            <h3>{el.categoryName}</h3>
+                            <p>{el.length}</p>
                             </div>
-                            <img className='imgdet' src={el.image} alt="" />
+                            <img className='imgdet' src={el.catPicture} alt="" />
                         </div>
                     )
                 })}
@@ -24,7 +24,7 @@ function page({user}) {
           
         </div>
         <div className='card1'>
-            <Card user={user}/>
+            <Card user={user} posts={posts}/>
         </div> 
 
     </div>
