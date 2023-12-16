@@ -19,9 +19,11 @@ const App = () => {
   const [userpost,setUserpost]=useState([])
   const [categpost,setCategpost]=useState([])
   const [commentpost,setCommentpost]=useState([])
-
-
+  console.log("one",oneUser);
+  console.log("posts",posts);
   console.log(users);
+  console.log("categories",categ );
+  console.log("postsuser",userpost);
 //back:
  
  // *********************************Users interaction ***********************//
@@ -32,11 +34,14 @@ useEffect(()=>{
   .then((res)=>{setUsers(res.data)
     console.log("user getted");
   })
-  .catch((err)=>{console.log(err)})},[allposts])
+  .catch((err)=>{console.log(err)})
+allposts()
+getAllCat()
+},[])
 
 // get one User // 
 const getOneUser = (idUser) => {
-  axios.get(`http://localhost:3000/api/users/oneUser/:${idUser}`)
+  axios.get(`http://localhost:3000/api/users/oneUser/${idUser}`)
   .then((res)=>{ 
     setOneuser(res.data)
     console.log("One user getted")})
@@ -55,15 +60,14 @@ const adduser=(user)=>{
 //posts
 // get All post //
 const allposts=()=>{
-  axios.get("http://localhost:3000/api/users/allposts")
-  .then((res)=>{
-    setPosts(res.data)
+  axios.get("http://localhost:3000/api/posts/getPosts/allposts")
+  .then((res)=>{ setPosts(res.data)
   })
-  .catch((err)=>{console.error(err);})
+  .catch((err)=>{console.error(err)})
 }
 // get posts of one selected user // 
 const getUserPosts = (idUser) => {
-  axios.get(`http://localhost:3000/api/posts/getPostByUser/:${idUser}`)
+  axios.get(`http://localhost:3000/api/posts/getPostByUser/${idUser}`)
   .then((res)=>{
     setUserpost(res.data)
     console.log("posts of user getted")})
@@ -72,7 +76,7 @@ const getUserPosts = (idUser) => {
 // get Posts by category // 
 
 const getPostsCat = (idCat) => {
-  axios.get(`http://localhost:3000/api/posts/getPostByCat/:${idCat}`)
+  axios.get(`http://localhost:3000/api/posts/getPostByCat/${idCat}`)
   .then((res)=>{
     setCategpost(res.data)
     console.log("posts by category getted")})
@@ -84,17 +88,16 @@ const addPost=(post)=>{
   .then(()=>{console.log("Post added")})
   .catch((err)=>{console.log(err)})}
 //category
-useEffect(()=>{
+const getAllCat = () => {
   axios.get("http://localhost:3000/api/categories/allCats")
   .then((res)=>{
-    setCateg(res.data)
-    console.log("all Categories")})
+    setCateg(res.data)})
   .catch((err)=>{console.log(err)})
-},[])
+}
 //comments
 // Get comments by post // 
 const getComByPost = (idPost) => {
-  axios.get(`http://localhost:3000/api/comments/allcomments/:${idPost}`)
+  axios.get(`http://localhost:3000/api/comments/allcomments/${idPost}`)
   .then((res)=>{
     setCommentpost(res.data)
     console.log("Comments by Post getted")})
@@ -115,6 +118,16 @@ const changeView=(x)=>{
 const Lverif=(em,pas)=>{
   const user = users.find(el => em === el.email && pas === el.motdepasse);
   return !!user;
+}
+
+const lverif2=(em,pas)=>{
+  users.map(el=>{
+    if(em === el.email && pas === el.motdepasse){
+      getOneUser(el.idusers)
+      getUserPosts(el.idusers)
+    }
+  })
+  
 }
 
 const verif_name=(x)=>{
@@ -172,15 +185,15 @@ const alert=()=>{
 }
   return (
     <>
-    {/* {!show&&alert()}
+    {!show&&alert()}
     <div className='bigdiv'>
       {view==="signup"?
-      <Formul change={changeView} add={adduser} verifn={verif_name} verife={verif_email} verifp={verif_password} />:
-      <Login change={changeView} verif={Lverif} />}
-    </div> */}
+      <Formul change={changeView} add={adduser} verifn={verif_name} verife={verif_email} verifp={verif_password} />:view==="login"?
+      <Login change={changeView} alert={Lverif} verif={lverif2} /> :<Profile oneuser={oneUser} post={userpost} />}
+    </div>
   {/* <Navbar user={users}/>
-  <Page user={users}/> */}
-  {/* <Profile /> */}
+  <Page user={users} posts={posts} categ={categ}/> */}
+  
     </>
 
 

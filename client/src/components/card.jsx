@@ -10,7 +10,7 @@ import AddCommentIcon from '@mui/icons-material/AddComment';
 
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
-function card({user}) {
+function card({user,posts}) {
 const [like,setlike]=useState(null)
 const [showcmnt,setShowcmnt]=useState(false)
 
@@ -20,17 +20,27 @@ const [showcmnt,setShowcmnt]=useState(false)
     console.log("userhere",user);
     return (
         <>
-            {user.map(el=>(
+
+            {
+            user.map((el,i)=>{
+              return(
                 <div className='card'>
                     <div className='headcard'>
                       <Stack direction="row" spacing={2}>
-                        <Avatar alt="Cindy Baker" src={el.image} />
+                        <Avatar alt="Cindy Baker" src={el.picture} />
                       </Stack>
-                      <h3>{el.name_user} {el.lastname_user}</h3>
+                      <h3>{el.name} {el.lastname}</h3>
                       </div>
                       <div>
-                        <img src={el.image} className='postimg' alt="" />
-                        <p>{el.email}</p>
+                        {posts.map(el=>{
+                          if(el.users_idusers===i+1){
+                          return(
+                          <>
+                          <img src={el.imagePost} className='postimg' alt="" />
+                        <p>{el.descriptionPost}</p>
+                        </>
+                        )}})}
+                        
                         <div>
                         <Checkbox onClick={()=>{setlike(like+1)}} {...label} icon={<FavoriteBorder />} checkedIcon={<Favorite />} />
                         <Checkbox
@@ -42,7 +52,7 @@ const [showcmnt,setShowcmnt]=useState(false)
                         </div>
                       </div>
                 </div>
-            ))}
+            )})}
       </>
     );
 };
