@@ -21,7 +21,7 @@ const upUser = (id,newUser,callback) => {
     conn.query(sql,newUser,(err,res)=>{callback(err,res)})
 }
 
-const removeUser = (userName,callback) => {
+const removeUser = (id,callback) => {
     const sql = `delete from users where idusers=${id}`
     conn.query(sql,(err,res)=>{callback(err,res)})
 }
