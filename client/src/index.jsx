@@ -19,6 +19,7 @@ const App = () => {
   const [userpost,setUserpost]=useState([])
   const [categpost,setCategpost]=useState([])
   const [commentpost,setCommentpost]=useState([])
+
   console.log("one",oneUser);
   console.log("posts",posts);
   console.log(users);
@@ -34,6 +35,7 @@ useEffect(()=>{
   .then((res)=>{setUsers(res.data)
     console.log("user getted");
   })
+
   .catch((err)=>{console.log(err)})
 allposts()
 getAllCat()
@@ -42,6 +44,13 @@ getAllCat()
 // get one User // 
 const getOneUser = (idUser) => {
   axios.get(`http://localhost:3000/api/users/oneUser/${idUser}`)
+
+  .catch((err)=>{console.log(err)})},[allposts])
+
+// get one User // 
+const getOneUser = (idUser) => {
+  axios.get(`http://localhost:3000/api/users/oneUser/:${idUser}`)
+
   .then((res)=>{ 
     setOneuser(res.data)
     console.log("One user getted")})
@@ -60,6 +69,7 @@ const adduser=(user)=>{
 //posts
 // get All post //
 const allposts=()=>{
+
   axios.get("http://localhost:3000/api/posts/getPosts/allposts")
   .then((res)=>{ setPosts(res.data)
   })
@@ -68,6 +78,17 @@ const allposts=()=>{
 // get posts of one selected user // 
 const getUserPosts = (idUser) => {
   axios.get(`http://localhost:3000/api/posts/getPostByUser/${idUser}`)
+
+  axios.get("http://localhost:3000/api/users/allposts")
+  .then((res)=>{
+    setPosts(res.data)
+  })
+  .catch((err)=>{console.error(err);})
+}
+// get posts of one selected user // 
+const getUserPosts = (idUser) => {
+  axios.get(`http://localhost:3000/api/posts/getPostByUser/:${idUser}`)
+
   .then((res)=>{
     setUserpost(res.data)
     console.log("posts of user getted")})
@@ -76,7 +97,11 @@ const getUserPosts = (idUser) => {
 // get Posts by category // 
 
 const getPostsCat = (idCat) => {
+
   axios.get(`http://localhost:3000/api/posts/getPostByCat/${idCat}`)
+=======
+  axios.get(`http://localhost:3000/api/posts/getPostByCat/:${idCat}`)
+
   .then((res)=>{
     setCategpost(res.data)
     console.log("posts by category getted")})
@@ -88,6 +113,7 @@ const addPost=(post)=>{
   .then(()=>{console.log("Post added")})
   .catch((err)=>{console.log(err)})}
 //category
+
 const getAllCat = () => {
   axios.get("http://localhost:3000/api/categories/allCats")
   .then((res)=>{
@@ -98,6 +124,19 @@ const getAllCat = () => {
 // Get comments by post // 
 const getComByPost = (idPost) => {
   axios.get(`http://localhost:3000/api/comments/allcomments/${idPost}`)
+
+useEffect(()=>{
+  axios.get("http://localhost:3000/api/categories/allCats")
+  .then((res)=>{
+    setCateg(res.data)
+    console.log("all Categories")})
+  .catch((err)=>{console.log(err)})
+},[])
+//comments
+// Get comments by post // 
+const getComByPost = (idPost) => {
+  axios.get(`http://localhost:3000/api/comments/allcomments/:${idPost}`)
+
   .then((res)=>{
     setCommentpost(res.data)
     console.log("Comments by Post getted")})
@@ -192,8 +231,12 @@ const alert=()=>{
       <Login change={changeView} alert={Lverif} verif={lverif2} /> :<Profile oneuser={oneUser} post={userpost} />}
     </div>
   {/* <Navbar user={users}/>
+
   <Page user={users} posts={posts} categ={categ}/> */}
-  
+
+  <Page user={users}/> */}
+  {/* <Profile /> */}
+
     </>
 
 
