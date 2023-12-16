@@ -41,11 +41,11 @@ function formulaire({change,add,verifn,verife,verifp}) {
   const [showsuccpw,setShowuccpw]=useState(false)
   const [showerrorpw,setShowerrorpw]=useState(false)
   const info={
-    name_user:fisrtn,
-    lastname_user:lastn,
+    name:fisrtn,
+    lastname:lastn,
     email:email,
-    password:password,
-    image:image
+    motdepasse:password,
+    picture:image
   }
 //function
   const hundle=(x,e)=>{
