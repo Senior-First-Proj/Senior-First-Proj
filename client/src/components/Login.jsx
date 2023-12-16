@@ -7,7 +7,7 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Alert from '@mui/material/Alert';
 
-function Login({change,verif}) {
+function Login({change,verif,alert}) {
 const [email,setEmail]=useState("")
 const [password,setPassword]=useState("")
 const [showsucc,setShowsucc]=useState(false)
@@ -119,7 +119,9 @@ const hundle=(x,e)=>{
     <Stack spacing={2} direction="row">
       <Button style={btnstyle} variant="Contained"
       onClick={()=>{
-        if(verif(email,password)==true){
+        if(alert(email,password)==true){
+          verif(email,password)
+          change("profile")
           setShowsucc(true);
           setShowerror(false)
         }
