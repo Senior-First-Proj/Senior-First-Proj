@@ -4,9 +4,9 @@ const userCont = require('../controllers/usersCont.js');
 
 
 userRoute.get('/allUsers',userCont.getUsers)
-userRoute.get('/oneUser/:id',userCont.getOne)
+userRoute.get('/oneUser/:idusers',userCont.getOne)
 userRoute.post('/addUser',userCont.addOneUser)
-userRoute.put('/updateUser/:id',userCont.updateUser)
-userRoute.delete('/deleteUser/:id', userCont.deleteUser)
+userRoute.put('/updateUser/:idusers',userCont.updateUser)
+userRoute.delete('/deleteUser/:idusers', userCont.deleteUser)
 
 module.exports = userRoute;
