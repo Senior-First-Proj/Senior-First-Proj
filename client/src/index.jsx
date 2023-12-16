@@ -7,6 +7,8 @@ import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
 import Navbar from './components/navbar.jsx'
 import Page from './components/page.jsx'
+import Profile from './components/profile.jsx'
+
 const App = () => {
   const [view,setView]=useState("login")
   const [users,setUsers]=useState([])
@@ -46,6 +48,7 @@ const deleteUser = (idUser) => {
   .then(()=>{ console.log("user deleted")})
   .catch((err)=>{ console.log(err)})
 }
+
 
 // update User // 
 
@@ -161,7 +164,7 @@ const changeView=(x)=>{
 
 
 const Lverif=(em,pas)=>{
-  const user = users.find(el => em === el.email && pas === el.password);
+  const user = users.find(el => em === el.email && pas === el.motdepasse);
   return !!user;
 }
 
@@ -226,8 +229,9 @@ const alert=()=>{
       <Formul change={changeView} add={adduser} verifn={verif_name} verife={verif_email} verifp={verif_password} />:
       <Login change={changeView} verif={Lverif} />}
     </div> */}
-  <Navbar user={users}/>
-  <Page user={users}/>
+  {/* <Navbar user={users}/>
+  <Page user={users}/> */}
+  <Profile/>
     </>
 
 
