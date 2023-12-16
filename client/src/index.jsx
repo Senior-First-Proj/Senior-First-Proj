@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom'
-import Formul from './components/formulaire.jsx'
+import Formulaire from './components/Formulaire.jsx'
 import Login from './components/Login.jsx'
 import axios from 'axios'
 import Alert from '@mui/material/Alert';
@@ -18,8 +18,7 @@ const App = () => {
  
 const adduser=(user)=>{
   axios.post("http://localhost:3000/api/users/addUser",user)
-  .then(()=>{
-    console.log("user added");
+  .then(()=>{console.log("user added");
     setshow(false)
   })
   .catch((err)=>{
@@ -27,19 +26,29 @@ const adduser=(user)=>{
   })
 }
 
-
-
-
 useEffect(()=>{
-  axios.get("http://localhost:3000/api/users/allUsers")
-  .then((res)=>{
-    setUsers(res.data)
-    console.log("user geted");
-  })
-  .catch((err)=>{
-    console.log(err);
-  })
+  axios.get("http://localhost:3000/api/categories/allCats")
+  .then((res)=>{console.log("all Categories")})
+  .catch((err)=>{console.log(err)})
 },[])
+
+// add Category //
+
+const addCategory = (newCat) => {
+  axios.post(`http://localhost:3000/api/categories/addCat`,newCat)
+  .then(()=>{ console.log("Category added")})
+  .catch((err)=>{ console.log(err)})
+}
+
+// Delete Category // 
+const deleteCategory = (catName) => {
+  axios.delete(`http://localhost:3000/api/categories/deleteCat/:${catName}`)
+  .then(()=>{ console.log("Category deleted")})
+  .catch((err)=>{ console.log(err)})
+}
+
+
+
 //function:
 const changeView=(x)=>{
   setView(x)
