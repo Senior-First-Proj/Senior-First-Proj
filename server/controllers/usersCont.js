@@ -13,17 +13,17 @@ const getUsers=(req,res)=>{
 
 // getOne (to get one user by userName)
 const getOne=(req,res)=>{
-    readOne(req.params.id,(err,result)=>{result?res.json(result):console.log(err)})
+    readOne(req.params.idusers,(err,result)=>{result?res.json(result):console.log(err)})
 }
 
 // updateUser (to update a user by userName)
 const updateUser=(req,res)=>{
-    upUser(req.params.id,req.body,(err,result)=>{result?res.json(result):console.log(err)})
+    upUser(req.params.idusers,req.body,(err,result)=>{result?res.json(result):console.log(err)})
 }
 
 //deleteUser (to delete a user by userName)
 const deleteUser=(req,res)=>{
-    removeUser(req.params.id,(err,result)=>{result?res.json(result):console.log(err)})
+    removeUser(req.params.idusers,(err,result)=>{result?res.json(result):console.log(err)})
 }
 
 //Don't forget to export

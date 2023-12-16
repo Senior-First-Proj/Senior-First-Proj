@@ -22,12 +22,12 @@ const addPost=(req,res)=>{
 
 //updatePost
 const updatePost=(req,res)=>{
-    upPost(req.params.id,req.body,(err,result)=>{result?res.json(result):console.log(err)})
+    upPost(req.params.idposts,req.body,(err,result)=>{result?res.json(result):console.log(err)})
 }
 
 //deletePost 
 const deletePost=(req,res)=>{
-    removePost(req.params.id,(err,result)=>{result?res.json(result):console.log(err)})
+    removePost(req.params.idposts,(err,result)=>{result?res.json(result):console.log(err)})
 }
 
 //Don't forget to export
