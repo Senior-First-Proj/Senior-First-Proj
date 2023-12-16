@@ -16,6 +16,25 @@ const App = () => {
   console.log(users);
 //back:
  
+ // *********************************Users interaction ***********************//
+
+ //get All users // 
+useEffect(()=>{
+  axios.get("http://localhost:3000/api/users/allUsers")
+  .then((res)=>{setUsers(res.data)
+    console.log("user getted");
+  })
+  .catch((err)=>{console.log(err)})},[])
+
+// get one User // 
+const getOneUser = (idUser) => {
+  axios.get(`http://localhost:3000/api/users/oneUser/:${idUser}`)
+  .then(()=>{ console.log("One user getted")})
+  .catch((err)=>{ console.log(err)})
+}
+
+
+// add new user //
 const adduser=(user)=>{
   axios.post("http://localhost:3000/api/users/addUser",user)
   .then(()=>{console.log("user added");
