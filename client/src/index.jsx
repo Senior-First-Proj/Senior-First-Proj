@@ -229,10 +229,10 @@ const render=()=>{
     )
   }
   else if(view==="top"){
-     return( <Toposts user={users} post={posts}/> )
+     return( <Toposts user={users} post={posts} change={changeView}/> )
   }
   else if(view ==="cat"){
-    return( <Cat user={users} categpost={categpost}/> )
+    return( <Cat user={users} categpost={categpost} change={changeView}/> )
  }
 }
   return (

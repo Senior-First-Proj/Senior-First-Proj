@@ -11,13 +11,11 @@ import AddCommentIcon from '@mui/icons-material/AddComment';
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
-const Cat = ({categpost,user}) => {
+const Cat = ({categpost,user,change}) => {
  const [filtred,setFiltred] = useState([])
 
- console.log("oKKKKKK")
- console.log("categpost",categpost)
- console.log("user",user);
 
+// function to show only users's posts in the selected category //
 const filterFunc = () => {
 
     for(let k=1; k<user.length; k++) {
@@ -64,9 +62,11 @@ filtred.map((e,i)=>{
                 <AddCommentIcon/>
             </div>
           </div>
+         
     </div>
 )})}
 </>
+<div><button className='but' onClick={()=>{change("home"); setFiltred([])}}> Go back </button></div>
 </div>
 )
 

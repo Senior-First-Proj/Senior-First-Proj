@@ -66,8 +66,8 @@ function profile({change,oneuser,post,deletePost}) {
             </div>
         <div className='details_profil'>
             <ul>
-                <li><h2>ID_user : {el.idusers}</h2></li>
-                <li><h2>Name & LastName : {el.name}_{el.lastname}</h2></li>
+                <li><h2>My ID : {el.idusers}</h2></li>
+                <li><h2>My Name : {el.name} {el.lastname}</h2></li>
                 <li><h2>Email : {el.email}</h2></li>
             </ul>
         </div>
