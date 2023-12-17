@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom'
 import Formulaire from './components/Formulaire.jsx'
+import Toposts from './components/Toposts.jsx'
+import Cat from './components/Cat.jsx'
 import Login from './components/Login.jsx'
 import axios from 'axios'
 import Alert from '@mui/material/Alert';
@@ -19,38 +21,33 @@ const App = () => {
   const [userpost,setUserpost]=useState([])
   const [categpost,setCategpost]=useState([])
   const [commentpost,setCommentpost]=useState([])
-
+  const[refresh,setRefresh]=useState(false)
   console.log("one",oneUser);
   console.log("posts",posts);
   console.log(users);
   console.log("categories",categ );
   console.log("postsuser",userpost);
+
 //back:
- 
  // *********************************Users interaction ***********************//
  //user
  //get All users // 
 useEffect(()=>{
   axios.get("http://localhost:3000/api/users/allUsers")
-  .then((res)=>{setUsers(res.data)
+  .then((res)=>{
+    setUsers(res.data)
     console.log("user getted");
   })
-
   .catch((err)=>{console.log(err)})
 allposts()
 getAllCat()
-},[])
+getComByPost()
+getUserPosts()
+},[refresh])
 
 // get one User // 
 const getOneUser = (idUser) => {
   axios.get(`http://localhost:3000/api/users/oneUser/${idUser}`)
-
-  .catch((err)=>{console.log(err)})},[allposts])
-
-// get one User // 
-const getOneUser = (idUser) => {
-  axios.get(`http://localhost:3000/api/users/oneUser/:${idUser}`)
-
   .then((res)=>{ 
     setOneuser(res.data)
     console.log("One user getted")})
@@ -69,7 +66,6 @@ const adduser=(user)=>{
 //posts
 // get All post //
 const allposts=()=>{
-
   axios.get("http://localhost:3000/api/posts/getPosts/allposts")
   .then((res)=>{ setPosts(res.data)
   })
@@ -78,17 +74,6 @@ const allposts=()=>{
 // get posts of one selected user // 
 const getUserPosts = (idUser) => {
   axios.get(`http://localhost:3000/api/posts/getPostByUser/${idUser}`)
-
-  axios.get("http://localhost:3000/api/users/allposts")
-  .then((res)=>{
-    setPosts(res.data)
-  })
-  .catch((err)=>{console.error(err);})
-}
-// get posts of one selected user // 
-const getUserPosts = (idUser) => {
-  axios.get(`http://localhost:3000/api/posts/getPostByUser/:${idUser}`)
-
   .then((res)=>{
     setUserpost(res.data)
     console.log("posts of user getted")})
@@ -97,11 +82,7 @@ const getUserPosts = (idUser) => {
 // get Posts by category // 
 
 const getPostsCat = (idCat) => {
-
   axios.get(`http://localhost:3000/api/posts/getPostByCat/${idCat}`)
-=======
-  axios.get(`http://localhost:3000/api/posts/getPostByCat/:${idCat}`)
-
   .then((res)=>{
     setCategpost(res.data)
     console.log("posts by category getted")})
@@ -112,31 +93,28 @@ const addPost=(post)=>{
   axios.post("http://localhost:3000/api/posts/addPost",post)
   .then(()=>{console.log("Post added")})
   .catch((err)=>{console.log(err)})}
-//category
 
+// Delete post //
+
+const deletePost=(idPost)=>{
+  axios.delete(`http://localhost:3000/api/posts/deletePost/${idPost}`)
+  .then(()=>{setRefresh(!refresh)
+  changeView("profile")})
+  .catch((err)=>{console.log(err)})}
+
+
+//category
 const getAllCat = () => {
   axios.get("http://localhost:3000/api/categories/allCats")
   .then((res)=>{
     setCateg(res.data)})
   .catch((err)=>{console.log(err)})
 }
+
 //comments
 // Get comments by post // 
 const getComByPost = (idPost) => {
   axios.get(`http://localhost:3000/api/comments/allcomments/${idPost}`)
-
-useEffect(()=>{
-  axios.get("http://localhost:3000/api/categories/allCats")
-  .then((res)=>{
-    setCateg(res.data)
-    console.log("all Categories")})
-  .catch((err)=>{console.log(err)})
-},[])
-//comments
-// Get comments by post // 
-const getComByPost = (idPost) => {
-  axios.get(`http://localhost:3000/api/comments/allcomments/:${idPost}`)
-
   .then((res)=>{
     setCommentpost(res.data)
     console.log("Comments by Post getted")})
@@ -222,21 +200,45 @@ const alert=()=>{
     </>
   )
 }
+const render=()=>{
+  if(view==="signup"){
+    return(
+      <div className='bigdiv'>
+      <Formul change={changeView} add={adduser} verifn={verif_name} verife={verif_email} verifp={verif_password} />
+      </div>
+    )
+  }
+  else if(view==="login"){
+    return(
+      <div className='bigdiv'>
+    <Login change={changeView} alert={Lverif} verif={lverif2} />
+    </div>
+    )
+  }
+  else if(view==="profile"){
+    return(
+      <Profile oneuser={oneUser} change={changeView} post={userpost} deletePost={deletePost}/>
+    )
+  }
+  else if(view==="home"){
+    return(
+      <>
+      <Navbar user={oneUser} change={changeView} />
+      <Page user={users} addcom={addComment} getcom={getComByPost} comments={commentpost} posts={posts} categ={categ} changeView={changeView} getPostsCat={getPostsCat}/> 
+      </>
+    )
+  }
+  else if(view==="top"){
+     return( <Toposts user={users} post={posts}/> )
+  }
+  else if(view ==="cat"){
+    return( <Cat user={users} categpost={categpost}/> )
+ }
+}
   return (
     <>
     {!show&&alert()}
-    <div className='bigdiv'>
-      {view==="signup"?
-      <Formul change={changeView} add={adduser} verifn={verif_name} verife={verif_email} verifp={verif_password} />:view==="login"?
-      <Login change={changeView} alert={Lverif} verif={lverif2} /> :<Profile oneuser={oneUser} post={userpost} />}
-    </div>
-  {/* <Navbar user={users}/>
-
-  <Page user={users} posts={posts} categ={categ}/> */}
-
-  <Page user={users}/> */}
-  {/* <Profile /> */}
-
+    {render()}
     </>
 
 

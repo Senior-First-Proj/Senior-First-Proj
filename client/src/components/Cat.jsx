@@ -10,15 +10,19 @@ import AddCommentIcon from '@mui/icons-material/AddComment';
 
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
-const Toposts = ({post,user}) => {
+
+const Cat = ({categpost,user}) => {
  const [filtred,setFiltred] = useState([])
 
-console.log("fil",filtred )
+ console.log("oKKKKKK")
+ console.log("categpost",categpost)
+ console.log("user",user);
+
 const filterFunc = () => {
 
     for(let k=1; k<user.length; k++) {
-        for(let j=0; j<post.length; j++) {
-            if(post[j].users_idusers === user[k].idusers){
+        for(let j=0; j<categpost.length; j++) {
+            if(categpost[j].users_idusers === user[k].idusers){
                 filtred.push(user[k])
             }
         }
@@ -26,7 +30,7 @@ const filterFunc = () => {
 }
 
 return (<div>
-    <div>{filterFunc(user,post)}</div>
+    <div>{filterFunc(user,categpost)}</div>
     <>
 
 {
@@ -41,15 +45,13 @@ filtred.map((e,i)=>{
           </div>
           
           <div>
- {post.map((el)=>{
+ {categpost.map((el)=>{
               if(el.users_idusers===e.idusers){
               return(
-               el.rate>5 &&( 
-               <>
-                <img src={el.imagePost} className='postimg' alt="" />
-              <p>{el.descriptionPost}</p>
-              </>)
-             
+              <>
+              <img src={el.imagePost} className='postimg' alt="" />
+            <p>{el.descriptionPost}</p>
+            </>
             )}})}
             
             <div>
@@ -69,4 +71,4 @@ filtred.map((e,i)=>{
 )
 
 }
-export default Toposts;
+export default Cat;

@@ -12,9 +12,9 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-const pages = ['Home','save'];
+const pages = ['save'];
 const settings = ['Profile'];
-function home({user}) {
+function home({user,change}) {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
   
@@ -23,6 +23,7 @@ function home({user}) {
     };
     const handleOpenUserMenu = (event) => {
       setAnchorElUser(event.currentTarget);
+      change("profile")
     };
   
     const handleCloseNavMenu = () => {
@@ -59,6 +60,7 @@ function home({user}) {
             >
               AKTIE
             </Typography>
+            <h3 onClick={()=>{change("top")}}> TOP POSTS </h3>
   
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
               <IconButton
@@ -128,10 +130,13 @@ function home({user}) {
             </Box>
   
             <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="Open settings">
+              <Tooltip title="profi">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   {user.map(el=>(
+                    <>
                     <Avatar alt="Remy Sharp" src={el.picture} />
+                    <h5>{el.name}_{el.lastname}</h5>
+                    </>
                   ))}
                 </IconButton>
               </Tooltip>
