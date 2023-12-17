@@ -101,8 +101,12 @@ a{
   margin-left: 1em;
   margin-top: 1em;
   margin-bottom:1em ;
-  padding: 1em;
+  display: flex;
   align-items: center;
+  padding-right: 5em;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  cursor: pointer;
 }
 .det{
   float: right;
@@ -110,9 +114,9 @@ a{
 }
 .imgdet{
   float: left;
-  width: 5em;
+  width: 12em;
+  height: 8em;
   border-radius: 25px;
-  margin-top: 1em;
 }
 .pagedive{
   display: flex;
@@ -142,11 +146,94 @@ a{
   align-items: center;
 }
 .postimg{
-  width: 15em;
+  width: 20em;
   border-radius: 25px;
-  margin-left: 33%;
+  margin-left: 16%;
 }
 .topost{
   float: right;
   display: flex;
+}
+.head_profil{
+  border: 1px solid;
+  border-radius: 25px;
+  box-shadow: 4px 4px 4px gray;
+  padding: 2em;
+  display: flex;
+  align-items: center;
+  background-color: white;
+}
+
+.pdp{
+  background-color: white;
+  border-radius: 78px;
+  box-shadow: 4px 4px 4px 4px  gray;
+}
+.details_profil {
+  margin-left: 2em;
+  padding: 1em;
+  width: 40em;
+  border-radius: 30px;
+  color: rgb(91, 27, 27);
+  h2{
+    font-size:30px;
+    font-family:Comic Sans MS ;
+  }
+}
+.divbtnprof{
+  margin-left: 50em;
+  margin-bottom: 10%;
+}
+.btnprof{
+  background-color: white;
+  border: none;
+  cursor: pointer;
+}
+.page_profile{
+  background-color:white;
+  margin-top: 2em;
+  padding: 2em;
+  width: 50em;
+  margin-left: 25%;
+  margin-right: 25%;
+  border: 1px solid gray ;
+  border-radius: 25px;
+  box-shadow: 4px 4px 4px 4px gray;
+  label{
+    font-size: 25px;
+    font-weight: bold;
+    font-family: Consolas;
+  }
+  textarea{
+    border-radius: 15px;
+    border: none;
+    margin-top: 1em;
+    padding: 2em;
+    background-color: beige;
+    box-shadow: 2px 2px 2px 2px gray;
+  }
+}
+.addbtn{
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  margin-left: 90%;
+}
+.card2{
+  /* display: flex; */
+  /* align-items: center; */
+  border: 1px solid gray ;
+  background-color: white;
+  width:65%;
+  margin: 1em;
+  margin-left: 15%;
+  margin-top: 2em;
+  padding: 2em;
+  border-radius: 25px;
+  box-shadow: 2px 4px 2px 4px rgba(128, 128, 128, 0.39);
+}
+.caption{
+  font-size: 18px;
+  font-family:Segoe UI;
+  font-weight: 600;
 }

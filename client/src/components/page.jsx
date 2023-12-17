@@ -1,19 +1,19 @@
 import React from 'react'
 import Card from './card.jsx'
-import Toposts from './toposts.jsx'
-function page({user,posts,categ}) {
+
+const page = ({user,posts,categ,comments,getcom,addcom,changeView,getPostsCat}) => {
   return (
     <div className='pagediv'>
         <div className='category'>
             <div className='trend'>
-            <h2>trends</h2> <a className='a1' href="">All</a>
+            <h2>Trends</h2>
             </div>
             <div>
                 {categ.map(el=>{
                     return(
-                        <div className='categ'>
+                        <div className='categ' onClick={()=>{getPostsCat(el.idtable2),changeView("cat")}}>
                             <div className='det'>
-                            <h3>{el.categoryName}</h3>
+                            <h3 >{el.categoryName}</h3>
                             <p>{el.length}</p>
                             </div>
                             <img className='imgdet' src={el.catPicture} alt="" />
@@ -24,7 +24,7 @@ function page({user,posts,categ}) {
           
         </div>
         <div className='card1'>
-            <Card user={user} posts={posts}/>
+            <Card user={user} addcom={addcom} getcom={getcom} comments={comments} posts={posts}/>
         </div> 
 
     </div>

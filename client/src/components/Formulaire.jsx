@@ -271,4 +271,4 @@ const uploadImage = ()=>{
   )
 }
 
-export default formulaire
+export default formulaire;
