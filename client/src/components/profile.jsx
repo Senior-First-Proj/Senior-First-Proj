@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
@@ -136,7 +137,7 @@ useEffect(()=>{},[post,imagee])
                         <div><button onClick={()=>{deletePost(el.idposts)}}> Delete </button></div>
                         </>
                         ))}
-                        
+                         
                       </div>
                 </div>
             )})}

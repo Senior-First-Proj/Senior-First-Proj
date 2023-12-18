@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom'
 import Formulaire from './components/Formulaire.jsx'
 import Toposts from './components/Toposts.jsx'
 import Cat from './components/Cat.jsx'
+import Toposts from './components/Toposts.jsx'
+import Cat from './components/Cat.jsx'
 import Login from './components/Login.jsx'
 import axios from 'axios'
 import Alert from '@mui/material/Alert';
@@ -22,11 +24,13 @@ const App = () => {
   const [categpost,setCategpost]=useState([])
   const [commentpost,setCommentpost]=useState([])
   const[refresh,setRefresh]=useState(false)
+  const[refresh,setRefresh]=useState(false)
   console.log("one",oneUser);
   console.log("posts",posts);
   console.log(users);
   console.log("categories",categ );
   console.log("postsuser",userpost);
+
 
 //back:
  // *********************************Users interaction ***********************//
@@ -36,11 +40,16 @@ useEffect(()=>{
   axios.get("http://localhost:3000/api/users/allUsers")
   .then((res)=>{
     setUsers(res.data)
+  .then((res)=>{
+    setUsers(res.data)
     console.log("user getted");
   })
   .catch((err)=>{console.log(err)})
 allposts()
 getAllCat()
+getComByPost()
+getUserPosts()
+},[refresh])
 getComByPost()
 getUserPosts()
 },[refresh])
