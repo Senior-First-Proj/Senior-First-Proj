@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom'
 import Formulaire from './components/Formulaire.jsx'
 import Toposts from './components/Toposts.jsx'
 import Cat from './components/Cat.jsx'
+import Toposts from './components/Toposts.jsx'
+import Cat from './components/Cat.jsx'
 import Login from './components/Login.jsx'
 import axios from 'axios'
 import Alert from '@mui/material/Alert';
@@ -22,11 +24,13 @@ const App = () => {
   const [categpost,setCategpost]=useState([])
   const [commentpost,setCommentpost]=useState([])
   const[refresh,setRefresh]=useState(false)
+  const[refresh,setRefresh]=useState(false)
   console.log("one",oneUser);
   console.log("posts",posts);
   console.log(users);
   console.log("categories",categ );
   console.log("postsuser",userpost);
+
 
 //back:
  // *********************************Users interaction ***********************//
@@ -36,11 +40,16 @@ useEffect(()=>{
   axios.get("http://localhost:3000/api/users/allUsers")
   .then((res)=>{
     setUsers(res.data)
+  .then((res)=>{
+    setUsers(res.data)
     console.log("user getted");
   })
   .catch((err)=>{console.log(err)})
 allposts()
 getAllCat()
+getComByPost()
+getUserPosts()
+},[refresh])
 getComByPost()
 getUserPosts()
 },[refresh])
@@ -203,9 +212,12 @@ const alert=()=>{
 const render=()=>{
   if(view==="signup"){
     return(
+      <>
+       {!show&&alert()}
       <div className='bigdiv'>
-      <Formul change={changeView} add={adduser} verifn={verif_name} verife={verif_email} verifp={verif_password} />
+      <Formulaire change={changeView} add={adduser} verifn={verif_name} verife={verif_email} verifp={verif_password} />
       </div>
+      </>
     )
   }
   else if(view==="login"){
@@ -217,7 +229,7 @@ const render=()=>{
   }
   else if(view==="profile"){
     return(
-      <Profile oneuser={oneUser} change={changeView} post={userpost} deletePost={deletePost}/>
+      <Profile addpost={addPost} oneuser={oneUser} change={changeView} post={userpost} deletePost={deletePost} categ={categ}/>
     )
   }
   else if(view==="home"){
@@ -229,20 +241,22 @@ const render=()=>{
     )
   }
   else if(view==="top"){
-     return( <Toposts user={users} post={posts}/> )
+     return( <Toposts user={users} post={posts} change={changeView}/> )
   }
   else if(view ==="cat"){
-    return( <Cat user={users} categpost={categpost}/> )
+    return( <Cat user={users} categpost={categpost} change={changeView}/> )
  }
 }
   return (
     <>
-    {!show&&alert()}
     {render()}
     </>
 
 
   )
 }
+
+
+
 
 ReactDOM.render(<App />, document.getElementById('app'))

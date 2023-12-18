@@ -10,15 +10,16 @@ import AddCommentIcon from '@mui/icons-material/AddComment';
 
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
-const Toposts = ({post,user}) => {
+const Toposts = ({post,user,change}) => {
  const [filtred,setFiltred] = useState([])
-
+console.log("user",user);
 console.log("fil",filtred )
+
 const filterFunc = () => {
 
-    for(let k=1; k<user.length; k++) {
+    for(let k=0; k<user.length; k++) {
         for(let j=0; j<post.length; j++) {
-            if(post[j].users_idusers === user[k].idusers){
+            if((post[j].users_idusers === user[k].idusers)&&(!filtred.includes(user[k])&&(post[j].descriptionPost))){
                 filtred.push(user[k])
             }
         }
@@ -26,13 +27,14 @@ const filterFunc = () => {
 }
 
 return (<div>
+       
     <div>{filterFunc(user,post)}</div>
     <>
-
+    <div><button className='but' onClick={()=>{change("home")}}>Home Page </button></div>
 {
 filtred.map((e,i)=>{
   return(
-    <div className='card'>
+    <div className='card' key={i}>
         <div className='headcard'>
           <Stack direction="row" spacing={2}>
             <Avatar alt="Cindy Baker" src={e.picture} />
@@ -44,7 +46,7 @@ filtred.map((e,i)=>{
  {post.map((el)=>{
               if(el.users_idusers===e.idusers){
               return(
-               el.rate>5 &&( 
+               el.rate>6 &&( 
                <>
                 <img src={el.imagePost} className='postimg' alt="" />
               <p>{el.descriptionPost}</p>

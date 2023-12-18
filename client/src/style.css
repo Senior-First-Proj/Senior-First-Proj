@@ -1,7 +1,14 @@
 body{
-  /* background: rgb(0,19,255);
-  background: linear-gradient(90deg, rgba(0,19,255,1) 0%, rgba(255,255,255,1) 100%); */
-  background-color: #f5f5dc;
+  background: linear-gradient(90deg, rgb(74, 151, 186) 0%, rgb(191, 203, 205) 100%);
+}
+img {
+  box-shadow: 2px 4px 2px 4px rgba(128, 128, 128, 0.39);
+  border-radius: 25px;
+  border: 1px solid gray ;
+}
+ul{
+  list-style-type: none;
+
 }
 .title{
   margin-left: 4em;
@@ -17,7 +24,6 @@ body{
   box-shadow: -8px 8px 12px 12px rgba(128, 128, 128, 0.433);
 }
 .divsign{
-  /* background-color: gray; */
   margin-left: 5%;
   margin-right: 5%;
  
@@ -102,6 +108,7 @@ a{
   margin-top: 1em;
   margin-bottom:1em ;
   display: flex;
+  display: flex;
   align-items: center;
   padding-right: 5em;
   padding-top: 15px;
@@ -147,8 +154,9 @@ a{
 }
 .postimg{
   width: 20em;
+  width: 20em;
   border-radius: 25px;
-  margin-left: 16%;
+  margin-left: 26%;
 }
 .topost{
   float: right;
@@ -158,7 +166,8 @@ a{
   border: 1px solid;
   border-radius: 25px;
   box-shadow: 4px 4px 4px gray;
-  padding: 2em;
+  padding: 4em;
+  padding-left: 5em;
   display: flex;
   align-items: center;
   background-color: white;
@@ -173,11 +182,12 @@ a{
   margin-left: 2em;
   padding: 1em;
   width: 40em;
-  border-radius: 30px;
-  color: rgb(91, 27, 27);
+  border-radius: 10px;
+  color: black;
   h2{
-    font-size:30px;
-    font-family:Comic Sans MS ;
+    font-size:20px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+ 
   }
 }
 .divbtnprof{
@@ -200,14 +210,15 @@ a{
   border-radius: 25px;
   box-shadow: 4px 4px 4px 4px gray;
   label{
-    font-size: 25px;
+    font-size: 20px;
     font-weight: bold;
-    font-family: Consolas;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   }
   textarea{
-    border-radius: 15px;
+    border-radius: 40px;
     border: none;
     margin-top: 1em;
+    margin-left: 3em;
     padding: 2em;
     background-color: beige;
     box-shadow: 2px 2px 2px 2px gray;
@@ -237,3 +248,34 @@ a{
   font-family:Segoe UI;
   font-weight: 600;
 }
+h3{
+  display: block;
+  font-size: 1.17em;
+  font-style: italic;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 10px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+}
+h5{
+  display: block;
+  color: black;
+  font-size: 0.83em;
+  margin-block-start: 1.67em;
+  margin-block-end: 1.67em;
+  margin-inline-start: 10px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+}
+.but{
+  padding: 5.5px 30px;
+  border-radius: 100px;
+  background-color:white;
+  color: black;
+  font-size: 17px;
+  margin : 10px;
+  margin-top: 20px;
+  align-items: center;
+  margin-left: 53px;
+  }     
