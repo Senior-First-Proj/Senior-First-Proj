@@ -7,6 +7,7 @@ import AddToPhotosIcon from '@mui/icons-material/AddToPhotos';
 import { styled } from '@mui/material/styles';
 import HomeIcon from '@mui/icons-material/Home';
 import BookmarksIcon from '@mui/icons-material/Bookmarks';
+import axios from 'axios';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import Checkbox from '@mui/material/Checkbox';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
@@ -26,22 +27,24 @@ const VisuallyHiddenInput = styled('input')({
     width: 1,
   });
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
-function profile({change,oneuser,post,deletePost}) {
-    const [image,setImage]=useState("")
+function profile({categ,change,oneuser,addpost,post,deletePost}) {
+    const [imagee,setImagee]=useState("")
     const [file,setFile]=useState(null)
     const [caption,setCaption]=useState("")
     const [iduser,setIduser]=useState(null)
-    const [categ,setcateg]=useState(1)
+    const [catego,setcatego]=useState(null)
     console.log("id",iduser);
     console.log("one",oneuser);
+    console.log("idcat",catego);
+    console.log("img",imagee);
   let info={
-    imagePost:image,
+    imagePost:imagee,
     descriptionPost:caption,
-    rate:1,
+    rate:0,
     users_idusers:iduser,
-    categories_idtable2:categ,
+    categories_idtable2:catego,
   }
-
+useEffect(()=>{},[post,imagee])
 
 
     const uploadImage = ()=>{
@@ -50,13 +53,21 @@ function profile({change,oneuser,post,deletePost}) {
         form.append("upload_preset" , "aquafish")
         axios.post("https://api.cloudinary.com/v1_1/djc7yq80i/upload",form)
         .then(
-            result=>{setImage(result.data.secure_url)}
+            result=>{
+              console.log(result.data.secure_url);
+              setImagee(result.data.secure_url)
+            }
         )
+        .catch(err=>{console.error(err);})
       }
   return (
     <div>
         <div>
-         {oneuser.map(el=>(
+         {oneuser.map(el=>{
+          if(!iduser){
+            setIduser(el.idusers)
+          }
+          return(
             <>
             <div className='head_profil'>
             <div className='pdp'>
@@ -66,8 +77,8 @@ function profile({change,oneuser,post,deletePost}) {
             </div>
         <div className='details_profil'>
             <ul>
-                <li><h2>My ID : {el.idusers}</h2></li>
-                <li><h2>My Name : {el.name} {el.lastname}</h2></li>
+                <li><h2>ID_user : {el.idusers}</h2></li>
+                <li><h2>Name & LastName : {el.name}_{el.lastname}</h2></li>
                 <li><h2>Email : {el.email}</h2></li>
             </ul>
         </div>
@@ -77,12 +88,12 @@ function profile({change,oneuser,post,deletePost}) {
         </div>
         </div>
         </>
-         ))}
+)})}
          <div className='page_profile'>
             <label htmlFor="">Add New Post +</label>
             <div className='upimg'>
       <label htmlFor="">Add picture :</label> <br />
-    <Button component="label" variant="contained" >
+    <Button component="label" variant="contained" startIcon={<CloudUploadIcon />} >
       Upload Image
       <VisuallyHiddenInput type="file"
       onChange={(e) => setFile(e.target.files[0])
@@ -90,11 +101,21 @@ function profile({change,oneuser,post,deletePost}) {
       
     </Button>
     <Button onClick={()=>{uploadImage()
-    console.log(file)}}>Add<AddAPhotoIcon sx={{ width: 40, height: 40 }} /></Button>
+    console.log(file)
+    }}>Add<AddAPhotoIcon sx={{ width: 40, height: 40 }} /></Button>
+    </div>
+    <div>
+      <label htmlFor="">Chose Category:</label>
+      <select name="" id="" onChange={(e)=>{setcatego(e.target.value)}} >
+        <option value="">chose...</option>
+      {categ.map(el=>(
+        <option key={el.idtable2} value={el.idtable2}>{el.categoryName}</option>
+      ))}
+      </select>
     </div>
     <label htmlFor="">Add caption :</label>
             <textarea onChange={(e)=>{setCaption(e.target.value)}}  placeholder='Add Caption.....' name="" id="" cols="90" rows="20"></textarea><br /><br />
-            <button className='addbtn'><AddToPhotosIcon sx={{ width: 40, height: 40 }}/></button>
+            <button className='addbtn' onClick={()=>{addpost(info)}}><AddToPhotosIcon sx={{ width: 40, height: 40 }}/></button>
          </div>
         <div>
         {
@@ -115,7 +136,7 @@ function profile({change,oneuser,post,deletePost}) {
                         <div><button onClick={()=>{deletePost(el.idposts)}}> Delete </button></div>
                         </>
                         ))}
-                         
+                        
                       </div>
                 </div>
             )})}

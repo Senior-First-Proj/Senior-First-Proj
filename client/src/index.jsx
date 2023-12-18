@@ -203,9 +203,12 @@ const alert=()=>{
 const render=()=>{
   if(view==="signup"){
     return(
+      <>
+       {!show&&alert()}
       <div className='bigdiv'>
-      <Formul change={changeView} add={adduser} verifn={verif_name} verife={verif_email} verifp={verif_password} />
+      <Formulaire change={changeView} add={adduser} verifn={verif_name} verife={verif_email} verifp={verif_password} />
       </div>
+      </>
     )
   }
   else if(view==="login"){
@@ -217,7 +220,7 @@ const render=()=>{
   }
   else if(view==="profile"){
     return(
-      <Profile oneuser={oneUser} change={changeView} post={userpost} deletePost={deletePost}/>
+      <Profile addpost={addPost} oneuser={oneUser} change={changeView} post={userpost} deletePost={deletePost} categ={categ}/>
     )
   }
   else if(view==="home"){
@@ -237,12 +240,14 @@ const render=()=>{
 }
   return (
     <>
-    {!show&&alert()}
     {render()}
     </>
 
 
   )
 }
+
+
+
 
 ReactDOM.render(<App />, document.getElementById('app'))
